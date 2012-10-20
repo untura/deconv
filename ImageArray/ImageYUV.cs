@@ -33,6 +33,7 @@ namespace ImageArray
 			for (int i = 0; i < height; i++) {
 				for (int j = 0; j < width; j++) {
 					p = im.GetPixel(i, j);
+					//TODO Проверить нормализацию хроматических компонент
 					y[i, j] = ( 0.29900 * p.R + 0.58700 * p.G + 0.11400 * p.B) / 255.0;
 					u[i, j] = (-0.14713 * p.R - 0.28886 * p.G + 0.43600 * p.B) / 255.0;
 					v[i, j] = ( 0.61500 * p.R - 0.51499 * p.G - 0.10001 * p.B) / 255.0;
@@ -121,6 +122,7 @@ namespace ImageArray
 					var U = this[i, j, ChannelYUV.U];
 					var V = this[i, j, ChannelYUV.V];
 
+					//TODO Проверить нормализацию хроматических компонент
 					int R = (int)Math.Round ((Y + 1.13983 * V) * 255);
 					int G = (int)Math.Round ((Y - 0.39465 * U - 0.58060 * V) * 255);
 					int B = (int)Math.Round ((Y + 2.03211 * U) * 255);
@@ -130,6 +132,51 @@ namespace ImageArray
 			}
 
 			return im;
+		}
+
+		/// <summary>
+		/// Возвращает указанный канал (Y, U или V) в виде массива.
+		/// </summary>
+		/// <returns>
+		/// Двумерный массив значений пикселей.
+		/// </returns>
+		/// <param name='channel'>
+		/// Канал (Y, U или V).
+		/// </param>
+		public double[,] GetChannel(ChannelYUV channel) {
+			switch(channel) {
+			case ChannelYUV.Y:
+				return (double[,])y.Clone();
+			case ChannelYUV.U:
+				return (double[,])u.Clone();
+			case ChannelYUV.V:
+				return (double[,])v.Clone();
+			default:
+				return null;	// FIXME Генерировать исключение
+			}
+		}
+
+		/// <summary>
+		/// Заполняет указанный канал заданными значениями из массива.
+		/// </summary>
+		/// <param name='channel'>
+		/// Заполняемый канал (Y, U или V)
+		/// </param>
+		/// <param name='values'>
+		/// Двумерный массив значений пикселей.
+		/// </param>
+		public void SetChannel(ChannelYUV channel, double[,] values)
+		{
+			// FIXME Проверка размеров массива
+			switch(channel) {
+			case ChannelYUV.Y:
+				y = (double[,])values.Clone();
+			case ChannelYUV.U:
+				u = (double[,])values.Clone();
+			case ChannelYUV.V:
+				v = (double[,])values.Clone();
+			}
+
 		}
 	}
 }
