@@ -14,7 +14,7 @@ namespace ImageArray
 
 		/// <summary>
 		/// Создаёт новый экземпляр класса <see cref="ImageArray.ImageYUV"/>
-		/// из экземпляра класса <see cref="System.Drawing.Image"/>.
+		/// из экземпляра класса <see cref="System.Drawing.Bitmap"/>.
 		/// </summary>
 		/// <param name='im'>
 		/// Исходное изображение.
@@ -79,6 +79,57 @@ namespace ImageArray
 					break;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Возвращает ширину изображения.
+		/// </summary>
+		/// <value>
+		/// Ширина.
+		/// </value>
+		public int Width {
+			get {
+				return y.GetLength (1);
+			}
+		}
+
+		/// <summary>
+		/// Возвращает высоту изображения.
+		/// </summary>
+		/// <value>
+		/// Высота.
+		/// </value>
+		public int Height {
+			get {
+				return y.GetLength (0);
+			}
+		}
+
+		/// <summary>
+		/// Приведение к типу <see cref="System.Drawing.Bitmap"/>.
+		/// </summary>
+		/// <returns>
+		/// Экземпляр класса <see cref="System.Drawing.Bitmap"/>.
+		/// </returns>
+		public Bitmap ToBitmap()
+		{
+			Bitmap im = new Bitmap(Width, Height);
+
+			for (int i = 0; i < Height; i++) {
+				for (int j = 0; j < Width; j++) {
+					var Y = this[i, j, ChannelYUV.Y];
+					var U = this[i, j, ChannelYUV.U];
+					var V = this[i, j, ChannelYUV.V];
+
+					int R = (int)Math.Round ((Y + 1.13983 * V) * 255);
+					int G = (int)Math.Round ((Y - 0.39465 * U - 0.58060 * V) * 255);
+					int B = (int)Math.Round ((Y + 2.03211 * U) * 255);
+
+					im.SetPixel(i, j, Color.FromArgb(R, G, B));
+				}
+			}
+
+			return im;
 		}
 	}
 }
