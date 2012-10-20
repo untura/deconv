@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deconv", "deconv\deconv.csproj", "{91B6C777-CC8E-4F08-A141-8E83877154BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageArray", "ImageArray\ImageArray.csproj", "{CC469638-BA9D-4DBA-A210-EA9AB5757CFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,13 @@ Global
 		{91B6C777-CC8E-4F08-A141-8E83877154BE}.Debug|x86.Build.0 = Debug|x86
 		{91B6C777-CC8E-4F08-A141-8E83877154BE}.Release|x86.ActiveCfg = Release|x86
 		{91B6C777-CC8E-4F08-A141-8E83877154BE}.Release|x86.Build.0 = Release|x86
+		{CC469638-BA9D-4DBA-A210-EA9AB5757CFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC469638-BA9D-4DBA-A210-EA9AB5757CFD}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC469638-BA9D-4DBA-A210-EA9AB5757CFD}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC469638-BA9D-4DBA-A210-EA9AB5757CFD}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = deconv\deconv.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
