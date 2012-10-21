@@ -35,8 +35,6 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="ImageYUV.cs" />
-    <Compile Include="ChannelRGB.cs" />
-    <Compile Include="ChannelYUV.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
