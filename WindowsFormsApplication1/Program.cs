@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing;
+using ImageArray;
 
 namespace WindowsFormsApplication1
 {
