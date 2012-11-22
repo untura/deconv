@@ -5,22 +5,50 @@ using System.Text;
 
 namespace Convolution
 {
-    public class Convolution
+    public class Filter
     {
         double [,] filter;
+        double div;
         
-        public Convolution(double[,] filter)
+        public Filter(string filter)
         {
-            this.filter = filter;
-        }
-
-        public Convolution()
-        {
-            filter = new double[,]{
+            switch (filter)
+            {
+                case "Gauss":
+                    this.filter = new double[,]{
                                 {1, 2, 1},
                                 {2, 4, 2},
                                 {1, 2, 1}
                                 };
+                    div = 16;
+                    break;
+                case "Sharpen":
+                    this.filter = new double[,] {
+                                {0, -1, 0},
+                                {-1, 5, -1},
+                                {0, -1, 0}
+                                };
+                    div = 1;
+                    break;
+                case "Emboss":
+                    this.filter = new double[,]{
+                                {-2, -1, 0},
+                                {-1, 1, 0},
+                                {0, 1, 2}
+                                };
+                    div = 1;
+                    break;
+            }
+        }
+
+        public Filter()
+        {
+            filter = new double[,]{
+                                {1, 1, 1},
+                                {1, 1, 1},
+                                {1, 1, 1}
+                                };
+            div = 9;
         }
 
         public double[,] Apply(double[,] image)
@@ -45,7 +73,7 @@ namespace Convolution
                     for (int k = 0; k < (filter.GetLength(0) - 1) / 2; k++)
                         for (int l = 0; l < (filter.GetLength(1) - 1) / 2; l++)
                         {
-                            image_new[i, j] = filter[k, l] * image[i - filter.GetLength(0) / 2 + k, j - filter.GetLength(0) / 2 + l];    
+                            image_new[i, j] = filter[k, l] * image[i - filter.GetLength(0) / 2 + k, j - filter.GetLength(0) / 2 + l] / div;    
                         }
             
             return image_new;

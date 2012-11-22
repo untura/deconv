@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using ImageArray;
 
-namespace WindowsFormsApplication1
+namespace GUI
 {
     static class Program
     {

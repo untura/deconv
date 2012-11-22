@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ImageArray;
+using Convolution;
 
-namespace WindowsFormsApplication1
+namespace GUI
 {
     public partial class Form1 : Form
     {
@@ -50,28 +51,17 @@ namespace WindowsFormsApplication1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var arr = new double[,]{
-                                {1, 2, 1},
-                                {2, 4, 2},
-                                {1, 2, 1}
-                                };
-            double div = 0;
-            foreach (var item in arr)
-                div += item;
-
-            ImageYUV im_sm = im;
-
-            for (int i = 1; i < im.Height - 1; i++)
-                for (int j = 1; j < im.Width - 1; j++)
-                {
-                    im_sm.Y[i, j] = (im.Y[i - 1, j - 1] * arr[0, 0] + im.Y[i - 1, j] * arr[0, 1] + im.Y[i - 1, j + 1] * arr[0, 2] +
-                                     im.Y[i,     j - 1] * arr[1, 0] + im.Y[i,     j] * arr[1, 1] + im.Y[i,     j + 1] * arr[1, 2] +
-                                     im.Y[i + 1, j - 1] * arr[2, 0] + im.Y[i + 1, j] * arr[2, 1] + im.Y[i + 1, j + 1] * arr[2, 2])
-                                    / div;
-                }
-
-            pictureBox3.Image = im_sm.ToBitmap();
+            Filter fil = new Filter(comboBox1.Text);
+            fil.Apply(im.Y);
+            
+            pictureBox3.Image = im.ToBitmap();
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string[] select = {"Gauss", "Sharpen", "Emboss"};
+            comboBox1.Items.AddRange(select);
         }
     }
 }
