@@ -8,6 +8,13 @@ namespace Fourier
 {
     public class FFT
     {
+        /// <summary>
+        /// Вычисление экспоненты
+        /// </summary>
+        /// <param name="K"></param>
+        /// <param name="u"></param>
+        /// <param name="x"></param>
+        /// <returns>Возвращает комплексное число</returns>
         private static Complex W(int K, int u, int x)
         {
             double arg = -2 * Math.PI * x * u / K;
@@ -49,7 +56,52 @@ namespace Fourier
         /// <remarks>Вычисляется как одномерные по каждой строке и столбцу</remarks>
         static public Complex[,] FFT2D(double[,] a)
         {
-            return null;
+            int K_line = a.GetLength(1) / 2;
+            int K_col = a.GetLength(0) / 2;
+
+            Complex[,] F = new Complex[a.GetLength(0),a.GetLength(1)];
+            Complex[,] F_even = new Complex[2 * K_line, 2 * K_col];
+            Complex[,] F_odd = new Complex[2 * K_line, 2 * K_col];
+            
+            //Применение одномерного БПФ по строкам
+            for (int i = 0; i < 2 * K_line; i++)
+            {
+                for (int j = 0; j < 2 * K_col; j++)
+                {
+                    for (int x = 0; x < K_line; x++)
+                    {
+                        F_even[i, j] += 1 / K_line * a[i, 2 * x]     * W(K_line, i, x);
+                        F_odd[i, j]  += 1 / K_line * a[i, 2 * x + 1] * W(K_line, j, x);
+                    }
+                }
+
+                for (int j = 0; j < K_line; j++)
+                {
+                    F[i, j]          = 1 / 2 * (F_even[i, j] + F_odd[i, j] * W(2 * K_line, j, 1));
+                    F[i, j + K_line] = 1 / 2 * (F_even[i, j] - F_odd[i, j] * W(2 * K_line, j, 1));
+                }
+            }
+
+            //Применение одномерного БПФ по столбцам
+            for (int j = 0; j < 2 * K_col; j++)
+            {
+                for (int i = 0; i < 2 * K_line; i++)
+                {
+                    for (int x = 0; x < K_col; x++)
+                    {
+                        F_even[i, j] += 1 / K_col * a[2 * x,     j] * W(K_col, i, x);
+                        F_odd[i, j]  += 1 / K_col * a[2 * x + 1, j] * W(K_col, i, x);
+                    }
+                }
+
+                for (int i = 0; i < K_col; i++)
+                {
+                    F[i, j]         = 1 / 2 * (F_even[i, j] + F_odd[i, j] * W(2 * K_col, j, 1));
+                    F[i + K_col, j] = 1 / 2 * (F_even[i, j] - F_odd[i, j] * W(2 * K_col, j, 1));
+                }
+            }
+
+            return F;
         }
     }
 }
