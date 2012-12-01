@@ -30,14 +30,14 @@ namespace Fourier
         {
             int K = a.Length / 2;
             Complex[] F = new Complex[2 * K];
-            Complex[] F_even = new Complex[2 * K];
-            Complex[] F_odd  = new Complex[2 * K];
+            Complex[] F_even = new Complex[K];
+            Complex[] F_odd  = new Complex[K];
 
             for (int u = 0; u < K; u++)
                 for (int x = 0; x < K; x++)
                 {
-                    F_even[u] += 1.0 / K * a[2 * x] * W(K, u, x);
-                    F_odd[u]  += 1.0 / K * a[2 * x + 1] * W(K, u, x);
+                    F_even[u] += a[2 * x]     * W(K, u, x);
+                    F_odd[u]  += a[2 * x + 1] * W(K, u, x);
                 }
             for (int u = 0; u < K; u++)
             {
@@ -70,8 +70,8 @@ namespace Fourier
                 {
                     for (int x = 0; x < K_line; x++)
                     {
-                        F_even[i, j] += 1.0 / K_line * a[i, 2 * x]     * W(K_line, i, x);
-                        F_odd[i, j]  += 1.0 / K_line * a[i, 2 * x + 1] * W(K_line, j, x);
+                        F_even[i, j] += a[i, 2 * x]     * W(K_line, i, x);
+                        F_odd[i, j]  += a[i, 2 * x + 1] * W(K_line, j, x);
                     }
                 }
 
@@ -89,8 +89,8 @@ namespace Fourier
                 {
                     for (int x = 0; x < K_col; x++)
                     {
-                        F_even[i, j] += 1.0 / K_col * a[2 * x,     j] * W(K_col, i, x);
-                        F_odd[i, j]  += 1.0 / K_col * a[2 * x + 1, j] * W(K_col, i, x);
+                        F_even[i, j] += F[2 * x,     j] * W(K_col, i, x);
+                        F_odd[i, j]  += F[2 * x + 1, j] * W(K_col, i, x);
                     }
                 }
 
@@ -109,7 +109,7 @@ namespace Fourier
         /// </summary>
         /// <param name="A">Входной массив с Фурье-образом</param>
         /// <returns></returns>
-        static public Complex[] IFFT1D(Complex[] A)
+        static public double[] IFFT1D(Complex[] A)
         {
             int K = A.Length / 2;
             Complex[] f = new Complex[2 * K];
@@ -124,66 +124,78 @@ namespace Fourier
                 }
             for (int u = 0; u < K; u++)
             {
-                f[u]     = 0.5 * (f_even[u] + f_odd[u] * W(2 * K, -u, 1));
-                f[u + K] = 0.5 * (f_even[u] - f_odd[u] * W(2 * K, -u, 1));
+                f[u]     = (f_even[u] + f_odd[u] * W(2 * K, -u, 1));
+                f[u + K] = (f_even[u] - f_odd[u] * W(2 * K, -u, 1));
             }
 
-            return f;
+            double[] a = new double[2 * K];
+            
+            for (int i = 0; i < 2 * K; i++)
+            {
+                a[i] = f[i].Magnitude;
+            }
+            return a;
         }
 
         /// <summary>
         /// Двумерное обратное быстрое преобразование Фурье
         /// </summary>
-        /// <param name="a">Входной массив с Фурье-образом</param>
+        /// <param name="A">Входной массив с Фурье-образом</param>
         /// <returns></returns>
-        static public Complex[,] IFFT2D(Complex[,] a)
+        static public double[,] IFFT2D(Complex[,] A)
         {
-            int K_line = a.GetLength(1) / 2;
-            int K_col = a.GetLength(0) / 2;
+            int K_line = A.GetLength(1) / 2;
+            int K_col = A.GetLength(0) / 2;
 
-            Complex[,] f = new Complex[a.GetLength(0), a.GetLength(1)];
+            Complex[,] f = new Complex[A.GetLength(0), A.GetLength(1)];
             Complex[,] f_even = new Complex[2 * K_line, 2 * K_col];
             Complex[,] f_odd = new Complex[2 * K_line, 2 * K_col];
 
-            //Применение одномерного обратного БПФ по строкам
-            for (int i = 0; i < 2 * K_line; i++)
-            {
-                for (int j = 0; j < 2 * K_col; j++)
-                {
-                    for (int x = 0; x < K_line; x++)
-                    {
-                        f_even[i, j] += 1.0 / K_line * a[i, 2 * x]     * W(K_line, -i, x);
-                        f_odd[i, j]  += 1.0 / K_line * a[i, 2 * x + 1] * W(K_line, -j, x);
-                    }
-                }
-
-                for (int j = 0; j < K_line; j++)
-                {
-                    f[i, j]          = 0.5 * (f_even[i, j] + f_odd[i, j] * W(2 * K_line, -j, 1));
-                    f[i, j + K_line] = 0.5 * (f_even[i, j] - f_odd[i, j] * W(2 * K_line, -j, 1));
-                }
-            }
 
             //Применение одномерного обратного БПФ по столбцам
             for (int j = 0; j < 2 * K_col; j++)
             {
                 for (int i = 0; i < 2 * K_line; i++)
-                {
                     for (int x = 0; x < K_col; x++)
                     {
-                        f_even[i, j] += 1.0 / K_col * a[2 * x, j] *     W(K_col, -i, x);
-                        f_odd[i, j]  += 1.0 / K_col * a[2 * x + 1, j] * W(K_col, -i, x);
+                        f_even[i, j] += 1.0 / K_col * A[2 * x, j] * W(K_col, -i, x);
+                        f_odd[i, j] += 1.0 / K_col * A[2 * x + 1, j] * W(K_col, -i, x);
                     }
-                }
-
+                
                 for (int i = 0; i < K_col; i++)
                 {
-                    f[i, j]         = 0.5 * (f_even[i, j] + f_odd[i, j] * W(2 * K_col, -j, 1));
-                    f[i + K_col, j] = 0.5 * (f_even[i, j] - f_odd[i, j] * W(2 * K_col, -j, 1));
+                    f[i, j] = (f_even[i, j] + f_odd[i, j] * W(2 * K_col, -j, 1));
+                    f[i + K_col, j] = (f_even[i, j] - f_odd[i, j] * W(2 * K_col, -j, 1));
                 }
             }
 
-            return f;
+            //Применение одномерного обратного БПФ по строкам
+            for (int i = 0; i < 2 * K_line; i++)
+            {
+                for (int j = 0; j < 2 * K_col; j++)
+                    for (int x = 0; x < K_line; x++)
+                    {
+                        f_even[i, j] += 1.0 / K_line * f[i, 2 * x]     * W(K_line, -i, x);
+                        f_odd[i, j]  += 1.0 / K_line * f[i, 2 * x + 1] * W(K_line, -j, x);
+                    }
+                
+                for (int j = 0; j < K_line; j++)
+                {
+                    f[i, j]          = (f_even[i, j] + f_odd[i, j] * W(2 * K_line, -j, 1));
+                    f[i, j + K_line] = (f_even[i, j] - f_odd[i, j] * W(2 * K_line, -j, 1));
+                }
+            }
+
+
+
+
+            double[,] a = new double[2 * K_col, 2 * K_line];
+
+            for (int i = 0; i < K_col; i++)
+                for (int j = 0; j < 2 * K_line; j++)
+                    a[i, j] = f[i, j].Magnitude;
+            
+            return a;
         }
     }
 }
