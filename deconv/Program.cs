@@ -18,10 +18,6 @@ namespace deconv
 
             double[,] f = FFT.IFFT2D(F);
 
-            //foreach (int item in f)
-            //{
-            //    Console.WriteLine(f[item]);
-            //}
         }
     }
 }
