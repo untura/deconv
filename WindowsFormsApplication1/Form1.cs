@@ -8,29 +8,17 @@ using System.Text;
 using System.Windows.Forms;
 using ImageArray;
 using Convolution;
+using System.IO;
 
 namespace GUI
 {
-    public partial class Form1 : Form
+    public partial class BaseForm : Form
     {
         ImageYUV im;
         
-        public Form1()
+        public BaseForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Title = "Open .bmp file";
-
-            if (openFile.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                return;
-
-            Bitmap bmp = new Bitmap(openFile.FileName);
-            pictureBox1.Image = bmp;
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -62,6 +50,41 @@ namespace GUI
         {
             string[] select = {"Gauss", "Sharpen", "Emboss"};
             comboBox1.Items.AddRange(select);
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Title = "Open .bmp file";
+
+            if (openFile.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                return;
+
+            Bitmap bmp = new Bitmap(openFile.FileName);
+            pictureBox1.Image = bmp;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+            pictureBox2.Image = bmp;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.DefaultExt = ".bmp";
+            saveFile.Filter = "bmp files (*.bmp)|*.bmp|All files (*.*)|*.*";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                Stream save_str = saveFile.OpenFile();
+                pictureBox2.Image.Save(save_str, System.Drawing.Imaging.ImageFormat.Bmp);
+                save_str.Close();
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
