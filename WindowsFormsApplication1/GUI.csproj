@@ -82,6 +82,10 @@
       <Project>{CFC75016-8862-4805-8ED9-C3BA6E6A9A78}</Project>
       <Name>Convolution</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fourier\Fourier.csproj">
+      <Project>{0E0FE342-DE3B-462E-BB67-EA53EF3B03E4}</Project>
+      <Name>Fourier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImageArray\ImageArray.csproj">
       <Project>{CC469638-BA9D-4DBA-A210-EA9AB5757CFD}</Project>
       <Name>ImageArray</Name>

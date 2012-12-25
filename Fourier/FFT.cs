@@ -201,5 +201,19 @@ namespace Fourier
             
             return a;
         }
+
+        static public double[,] Convolute(double[,] im, double[,] fil)
+        {
+            Complex[,] IM_F = FFT2D(im);
+            Complex[,] fil_F = FFT2D(fil);
+            Complex[,] G = new Complex[IM_F.GetLength(0), IM_F.GetLength(1)];
+            
+            for (int i = 0; i < IM_F.GetLength(0); i++)
+                for (int j = 0; j < IM_F.GetLength(1); j++)
+                    G[i, j] = IM_F[i, j] * fil_F[i, j];
+
+            double[,] res = IFFT2D(G);
+            return res;
+        }
     }
 }

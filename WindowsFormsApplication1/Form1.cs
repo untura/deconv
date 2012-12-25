@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ImageArray;
 using Convolution;
+using Fourier;
 using System.IO;
 
 namespace GUI
@@ -61,6 +62,8 @@ namespace GUI
                 return;
 
             Bitmap bmp = new Bitmap(openFile.FileName);
+            im = new ImageYUV(bmp);
+
             pictureBox1.Image = bmp;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
@@ -85,6 +88,25 @@ namespace GUI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            double[,] fil = new double[im.Y.GetLength(0), im.Y.GetLength(1)];
+           
+            for (int i = im.Y.GetLength(0) / 2 - 1; i < im.Y.GetLength(0) / 2 + 1; i++)
+                for (int j = im.Y.GetLength(0) / 2 - 1; j < im.Y.GetLength(0) / 2 + 1; j++)
+                    fil[i, j] = 0.7;
+
+            double[,] res = FFT.Convolute(im.Y, fil);
+
+            for (int i = 0; i < im.Y.GetLength(0); i++)
+                for (int j = 0; j < im.Y.GetLength(1); j++)
+                    im.Y[i, j] = res[i, j];
+
+            pictureBox3.Image = im.ToBitmap();
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
         }
     }
 }
