@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using ImageArray;
 
-namespace WindowsFormsApplication1
+namespace GUI
 {
     static class Program
     {
@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new BaseForm());
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Fourier;
+using System.Numerics;
 
 namespace deconv
 {
@@ -9,7 +11,13 @@ namespace deconv
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Привет, мир!");
+            double[,] a = { { 12, 13, 17, 45 }, { 23, 7, 8, 10 }, { 12, 13, 17, 45 }, { 23, 7, 8, 10 } };
+            Complex[,] F;
+
+            F = FFT.FFT2D(a);
+
+            double[,] f = FFT.IFFT2D(F);
+
         }
     }
 }
