@@ -97,7 +97,7 @@ namespace GUI
            
             for (int i = im.Y.GetLength(0) / 2 - 1; i < im.Y.GetLength(0) / 2 + 1; i++)
                 for (int j = im.Y.GetLength(0) / 2 - 1; j < im.Y.GetLength(0) / 2 + 1; j++)
-                    fil[i, j] = 0.7;
+                    fil[i, j] = 0.5;
 
             double[,] res = FFT.Convolute(im.Y, fil);
 

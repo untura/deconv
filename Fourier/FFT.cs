@@ -213,7 +213,25 @@ namespace Fourier
                     G[i, j] = IM_F[i, j] * fil_F[i, j];
 
             double[,] res = IFFT2D(G);
-            return res;
+            double[,] res_cor = new double[im.GetLength(0), im.GetLength(1)];
+
+            for (int i = 0; i < res.GetLength(0) / 2; i++)
+                for (int j = 0; j < res.GetLength(1) / 2; j++)
+                    res_cor[i,j] = res[i + res.GetLength(0) / 2, j + res.GetLength(1) / 2];
+
+            for (int i = res.GetLength(0) / 2; i < res.GetLength(0); i++)
+                for (int j = res.GetLength(1) / 2; j < res.GetLength(1); j++)
+                    res_cor[i, j] = res[i - res.GetLength(0) / 2, j - res.GetLength(1) / 2];
+
+            for (int i = 0; i < res.GetLength(0) / 2; i++)
+                for (int j = res.GetLength(1) / 2; j < res.GetLength(1); j++)
+                    res_cor[i, j] = res[i + res.GetLength(0) / 2, j - res.GetLength(1) / 2];
+
+            for (int i = res.GetLength(0) / 2; i < res.GetLength(0); i++)
+                for (int j = 0; j < res.GetLength(1) / 2; j++)
+                    res_cor[i, j] = res[i - res.GetLength(0) / 2, j + res.GetLength(1) / 2];
+
+            return res_cor;
         }
     }
 }
