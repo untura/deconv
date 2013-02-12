@@ -78,6 +78,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Deconvolution.csproj">
+      <Project>{1DBC50C5-7B68-4344-B2DE-B783E829081E}</Project>
+      <Name>Deconvolution</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Convolution\Convolution.csproj">
       <Project>{CFC75016-8862-4805-8ED9-C3BA6E6A9A78}</Project>
       <Name>Convolution</Name>

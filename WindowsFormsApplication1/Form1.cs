@@ -10,12 +10,14 @@ using ImageArray;
 using Convolution;
 using Fourier;
 using System.IO;
+using Deconvolution;
 
 namespace GUI
 {
     public partial class BaseForm : Form
     {
         ImageYUV im;
+        double[,] fil_F;
         
         public BaseForm()
         {
@@ -34,6 +36,8 @@ namespace GUI
                     im.V[i, j] = 0;
                 }
 
+            pictureBox1.Image = im.ToBitmap();
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.Image = im.ToBitmap();
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
         }
@@ -93,19 +97,43 @@ namespace GUI
         private void button1_Click(object sender, EventArgs e)
         {
             
-            double[,] fil = new double[im.Y.GetLength(0), im.Y.GetLength(1)];
+            fil_F = new double[im.Y.GetLength(0), im.Y.GetLength(1)];
            
-            for (int i = im.Y.GetLength(0) / 2 - 1; i < im.Y.GetLength(0) / 2 + 1; i++)
-                for (int j = im.Y.GetLength(0) / 2 - 1; j < im.Y.GetLength(0) / 2 + 1; j++)
-                    fil[i, j] = 0.5;
+            for (int i = im.Y.GetLength(0) / 2 - 5; i < im.Y.GetLength(0) / 2 + 5; i++)
+                for (int j = im.Y.GetLength(0) / 2 - 5; j < im.Y.GetLength(0) / 2 + 5; j++)
+                    fil_F[i, j] = 0.02;
 
-            double[,] res = FFT.Convolute(im.Y, fil);
+            double[,] res = FFT.Convolute(im.Y, fil_F);
 
             for (int i = 0; i < im.Y.GetLength(0); i++)
                 for (int j = 0; j < im.Y.GetLength(1); j++)
                     im.Y[i, j] = res[i, j];
 
-            pictureBox3.Image = im.ToBitmap();
+            pictureBox2.Image = im.ToBitmap();
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void Inverse_filter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Wiener_filter_Click(object sender, EventArgs e)
+        {
+            ImageYUV im_deconv = im;
+            double K = 0.001;
+            
+            double[,] res = Fourier_filter.Wiener(fil_F, im.Y, K);
+
+            for (int i = 0; i < im.Height; i++)
+                for (int j = 0; j < im.Width; j++)
+                {
+                    im_deconv.Y[i, j] = res[i, j];
+                    im_deconv.U[i, j] = 0;
+                    im_deconv.V[i, j] = 0;
+                }
+
+            pictureBox3.Image = im_deconv.ToBitmap();
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
         }
     }

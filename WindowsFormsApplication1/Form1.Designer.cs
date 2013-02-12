@@ -44,6 +44,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.button1 = new System.Windows.Forms.Button();
+            this.Inverse_filter = new System.Windows.Forms.Button();
+            this.Wiener_filter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -100,7 +102,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(317, 226);
+            this.button5.Location = new System.Drawing.Point(317, 239);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 6;
@@ -119,7 +121,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(286, 325);
+            this.comboBox1.Location = new System.Drawing.Point(286, 268);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(134, 21);
             this.comboBox1.TabIndex = 8;
@@ -175,11 +177,33 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Inverse_filter
+            // 
+            this.Inverse_filter.Location = new System.Drawing.Point(317, 295);
+            this.Inverse_filter.Name = "Inverse_filter";
+            this.Inverse_filter.Size = new System.Drawing.Size(75, 23);
+            this.Inverse_filter.TabIndex = 11;
+            this.Inverse_filter.Text = "Inverse";
+            this.Inverse_filter.UseVisualStyleBackColor = true;
+            this.Inverse_filter.Click += new System.EventHandler(this.Inverse_filter_Click);
+            // 
+            // Wiener_filter
+            // 
+            this.Wiener_filter.Location = new System.Drawing.Point(317, 375);
+            this.Wiener_filter.Name = "Wiener_filter";
+            this.Wiener_filter.Size = new System.Drawing.Size(75, 23);
+            this.Wiener_filter.TabIndex = 12;
+            this.Wiener_filter.Text = "Wiener";
+            this.Wiener_filter.UseVisualStyleBackColor = true;
+            this.Wiener_filter.Click += new System.EventHandler(this.Wiener_filter_Click);
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 506);
+            this.Controls.Add(this.Wiener_filter);
+            this.Controls.Add(this.Inverse_filter);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox3);
@@ -222,6 +246,8 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Inverse_filter;
+        private System.Windows.Forms.Button Wiener_filter;
     }
 }
 
