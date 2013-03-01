@@ -17,6 +17,7 @@ namespace GUI
     public partial class BaseForm : Form
     {
         ImageYUV im;
+        ImageYUV im_conv;
         double[,] fil_F;
         
         public BaseForm()
@@ -96,20 +97,22 @@ namespace GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Bitmap bm = new Bitmap(pictureBox1.Image);
+            im_conv = new ImageYUV(bm);
+
             fil_F = new double[im.Y.GetLength(0), im.Y.GetLength(1)];
            
-            for (int i = im.Y.GetLength(0) / 2 - 5; i < im.Y.GetLength(0) / 2 + 5; i++)
-                for (int j = im.Y.GetLength(0) / 2 - 5; j < im.Y.GetLength(0) / 2 + 5; j++)
-                    fil_F[i, j] = 0.02;
+            for (int i = im.Y.GetLength(0) / 2 - 3; i <= im.Y.GetLength(0) / 2 + 3; i++)
+                for (int j = im.Y.GetLength(0) / 2 - 3; j <= im.Y.GetLength(0) / 2 + 3; j++)
+                    fil_F[i, j] = 0.1;
 
             double[,] res = FFT.Convolute(im.Y, fil_F);
 
             for (int i = 0; i < im.Y.GetLength(0); i++)
                 for (int j = 0; j < im.Y.GetLength(1); j++)
-                    im.Y[i, j] = res[i, j];
+                    im_conv.Y[i, j] = res[i, j];
 
-            pictureBox2.Image = im.ToBitmap();
+            pictureBox2.Image = im_conv.ToBitmap();
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
@@ -120,10 +123,10 @@ namespace GUI
 
         private void Wiener_filter_Click(object sender, EventArgs e)
         {
-            ImageYUV im_deconv = im;
-            double K = 0.001;
+            ImageYUV im_deconv = new ImageYUV(im_conv.ToBitmap());
+            double K = 0.1;
             
-            double[,] res = Fourier_filter.Wiener(fil_F, im.Y, K);
+            double[,] res = Fourier_filter.Wiener(fil_F, im_conv.Y, K);
 
             for (int i = 0; i < im.Height; i++)
                 for (int j = 0; j < im.Width; j++)

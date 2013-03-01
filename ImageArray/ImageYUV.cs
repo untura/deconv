@@ -102,6 +102,15 @@ namespace ImageArray
 			}
 		}
 
+        static int Sef(int value)
+        {
+            if (value < 0)
+                return 0;
+            if (value > 255)
+                return 255;
+            return value;
+        }
+
 		/// <summary>
 		/// Приведение к типу <see cref="System.Drawing.Bitmap"/>.
 		/// </summary>
@@ -119,6 +128,10 @@ namespace ImageArray
 					int R = (int)Math.Round ((Y[i, j]                     + 1.13983 * V[i, j]) * 255);
 					int G = (int)Math.Round ((Y[i, j] - 0.39465 * U[i, j] - 0.58060 * V[i, j]) * 255);
 					int B = (int)Math.Round ((Y[i, j] + 2.03211 * U[i, j]                    ) * 255);
+
+                    R = Sef(R);
+                    G = Sef(G);
+                    B = Sef(B);
 
 					im.SetPixel(i, j, Color.FromArgb(R, G, B));
 				}
