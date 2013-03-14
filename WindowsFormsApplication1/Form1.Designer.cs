@@ -31,8 +31,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -46,6 +44,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Inverse_filter = new System.Windows.Forms.Button();
             this.Wiener_filter = new System.Windows.Forms.Button();
+            this.Const_value = new System.Windows.Forms.TextBox();
+            this.mu_in = new System.Windows.Forms.TextBox();
+            this.sigma_in = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -54,7 +55,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 68);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 108);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(268, 375);
             this.pictureBox1.TabIndex = 0;
@@ -62,7 +63,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(426, 68);
+            this.pictureBox2.Location = new System.Drawing.Point(370, 108);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(268, 375);
             this.pictureBox2.TabIndex = 1;
@@ -70,7 +71,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(317, 68);
+            this.button2.Location = new System.Drawing.Point(12, 50);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -78,31 +79,13 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(317, 97);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Channel U";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(317, 126);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Channel V";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(317, 239);
+            this.button5.Location = new System.Drawing.Point(133, 68);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 6;
@@ -112,7 +95,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(720, 68);
+            this.pictureBox3.Location = new System.Drawing.Point(720, 108);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(268, 375);
             this.pictureBox3.TabIndex = 7;
@@ -121,9 +104,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(286, 268);
+            this.comboBox1.Location = new System.Drawing.Point(214, 70);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(134, 21);
+            this.comboBox1.Size = new System.Drawing.Size(89, 21);
             this.comboBox1.TabIndex = 8;
             // 
             // menuStrip1
@@ -143,33 +126,33 @@
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(317, 179);
+            this.button1.Location = new System.Drawing.Point(133, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
@@ -179,7 +162,7 @@
             // 
             // Inverse_filter
             // 
-            this.Inverse_filter.Location = new System.Drawing.Point(317, 295);
+            this.Inverse_filter.Location = new System.Drawing.Point(474, 27);
             this.Inverse_filter.Name = "Inverse_filter";
             this.Inverse_filter.Size = new System.Drawing.Size(75, 23);
             this.Inverse_filter.TabIndex = 11;
@@ -189,7 +172,7 @@
             // 
             // Wiener_filter
             // 
-            this.Wiener_filter.Location = new System.Drawing.Point(317, 375);
+            this.Wiener_filter.Location = new System.Drawing.Point(474, 68);
             this.Wiener_filter.Name = "Wiener_filter";
             this.Wiener_filter.Size = new System.Drawing.Size(75, 23);
             this.Wiener_filter.TabIndex = 12;
@@ -197,19 +180,41 @@
             this.Wiener_filter.UseVisualStyleBackColor = true;
             this.Wiener_filter.Click += new System.EventHandler(this.Wiener_filter_Click);
             // 
+            // Const_value
+            // 
+            this.Const_value.Location = new System.Drawing.Point(555, 70);
+            this.Const_value.Name = "Const_value";
+            this.Const_value.Size = new System.Drawing.Size(52, 20);
+            this.Const_value.TabIndex = 13;
+            // 
+            // mu_in
+            // 
+            this.mu_in.Location = new System.Drawing.Point(214, 29);
+            this.mu_in.Name = "mu_in";
+            this.mu_in.Size = new System.Drawing.Size(52, 20);
+            this.mu_in.TabIndex = 14;
+            // 
+            // sigma_in
+            // 
+            this.sigma_in.Location = new System.Drawing.Point(272, 29);
+            this.sigma_in.Name = "sigma_in";
+            this.sigma_in.Size = new System.Drawing.Size(52, 20);
+            this.sigma_in.TabIndex = 15;
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 506);
+            this.ClientSize = new System.Drawing.Size(1000, 532);
+            this.Controls.Add(this.sigma_in);
+            this.Controls.Add(this.mu_in);
+            this.Controls.Add(this.Const_value);
             this.Controls.Add(this.Wiener_filter);
             this.Controls.Add(this.Inverse_filter);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -233,8 +238,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -248,6 +251,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button Inverse_filter;
         private System.Windows.Forms.Button Wiener_filter;
+        private System.Windows.Forms.TextBox Const_value;
+        private System.Windows.Forms.TextBox mu_in;
+        private System.Windows.Forms.TextBox sigma_in;
     }
 }
 

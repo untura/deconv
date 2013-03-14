@@ -234,5 +234,14 @@ namespace Fourier
             
             return res;
         }
+
+        static public double Noise (double bright_value, double average_bright, double mean_square)
+        {
+            double noise = 1 / Math.Sqrt(2 * Math.PI * mean_square) * 
+                Math.Exp((-(bright_value - average_bright) * (bright_value - average_bright)) / 
+                         (2 * mean_square * mean_square));
+           
+            return noise;
+        }
     }
 }
