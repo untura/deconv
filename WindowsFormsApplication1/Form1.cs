@@ -104,7 +104,7 @@ namespace GUI
            
             for (int i = im.Y.GetLength(0) / 2 - 5; i <= im.Y.GetLength(0) / 2 + 5; i++)
                 for (int j = im.Y.GetLength(0) / 2 - 5; j <= im.Y.GetLength(0) / 2 + 5; j++)
-                    filter[i, j] = 1 / 100.0;
+                    filter[i, j] = Convert.ToDouble(Blur_value.Text);
 
             double mu = Convert.ToDouble(mu_in.Text);
             double sigma = Convert.ToDouble(sigma_in.Text);
@@ -131,6 +131,9 @@ namespace GUI
               
             pictureBox3.Image = im_deconv.ToBitmap();
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            PSNR.Text = Convert.ToString(Fourier_filter.PSNR(im.Y, im_deconv.Y)) + " dB";
+            PSNR_static.Visible = true;
+            PSNR.Visible = true;
         }
 
         private void Wiener_filter_Click(object sender, EventArgs e)
@@ -146,6 +149,9 @@ namespace GUI
                 
             pictureBox3.Image = im_deconv.ToBitmap();
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            PSNR.Text = Convert.ToString(Fourier_filter.PSNR(im.Y, im_deconv.Y)) + " dB";
+            PSNR_static.Visible = true;
+            PSNR.Visible = true;
         }
     }
 }

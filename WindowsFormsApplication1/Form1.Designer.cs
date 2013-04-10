@@ -47,6 +47,10 @@
             this.Const_value = new System.Windows.Forms.TextBox();
             this.mu_in = new System.Windows.Forms.TextBox();
             this.sigma_in = new System.Windows.Forms.TextBox();
+            this.Blur_value = new System.Windows.Forms.TextBox();
+            this.PSNR_static = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PSNR = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -55,23 +59,23 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 108);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 176);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(268, 375);
+            this.pictureBox1.Size = new System.Drawing.Size(268, 307);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(370, 108);
+            this.pictureBox2.Location = new System.Drawing.Point(370, 176);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(268, 375);
+            this.pictureBox2.Size = new System.Drawing.Size(268, 307);
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 50);
+            this.button2.Location = new System.Drawing.Point(25, 72);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -85,7 +89,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(133, 68);
+            this.button5.Location = new System.Drawing.Point(133, 101);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 6;
@@ -95,16 +99,16 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(720, 108);
+            this.pictureBox3.Location = new System.Drawing.Point(720, 176);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(268, 375);
+            this.pictureBox3.Size = new System.Drawing.Size(268, 307);
             this.pictureBox3.TabIndex = 7;
             this.pictureBox3.TabStop = false;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(214, 70);
+            this.comboBox1.Location = new System.Drawing.Point(214, 103);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(89, 21);
             this.comboBox1.TabIndex = 8;
@@ -152,17 +156,17 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(133, 27);
+            this.button1.Location = new System.Drawing.Point(133, 43);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
-            this.button1.Text = "Fourier";
+            this.button1.Text = "Blur";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Inverse_filter
             // 
-            this.Inverse_filter.Location = new System.Drawing.Point(474, 27);
+            this.Inverse_filter.Location = new System.Drawing.Point(474, 43);
             this.Inverse_filter.Name = "Inverse_filter";
             this.Inverse_filter.Size = new System.Drawing.Size(75, 23);
             this.Inverse_filter.TabIndex = 11;
@@ -172,7 +176,7 @@
             // 
             // Wiener_filter
             // 
-            this.Wiener_filter.Location = new System.Drawing.Point(474, 68);
+            this.Wiener_filter.Location = new System.Drawing.Point(474, 101);
             this.Wiener_filter.Name = "Wiener_filter";
             this.Wiener_filter.Size = new System.Drawing.Size(75, 23);
             this.Wiener_filter.TabIndex = 12;
@@ -182,30 +186,69 @@
             // 
             // Const_value
             // 
-            this.Const_value.Location = new System.Drawing.Point(555, 70);
+            this.Const_value.Location = new System.Drawing.Point(555, 103);
             this.Const_value.Name = "Const_value";
             this.Const_value.Size = new System.Drawing.Size(52, 20);
             this.Const_value.TabIndex = 13;
             // 
             // mu_in
             // 
-            this.mu_in.Location = new System.Drawing.Point(214, 29);
+            this.mu_in.Location = new System.Drawing.Point(214, 53);
             this.mu_in.Name = "mu_in";
             this.mu_in.Size = new System.Drawing.Size(52, 20);
             this.mu_in.TabIndex = 14;
             // 
             // sigma_in
             // 
-            this.sigma_in.Location = new System.Drawing.Point(272, 29);
+            this.sigma_in.Location = new System.Drawing.Point(272, 53);
             this.sigma_in.Name = "sigma_in";
             this.sigma_in.Size = new System.Drawing.Size(52, 20);
             this.sigma_in.TabIndex = 15;
+            // 
+            // Blur_value
+            // 
+            this.Blur_value.Location = new System.Drawing.Point(214, 27);
+            this.Blur_value.Name = "Blur_value";
+            this.Blur_value.Size = new System.Drawing.Size(52, 20);
+            this.Blur_value.TabIndex = 16;
+            // 
+            // PSNR_static
+            // 
+            this.PSNR_static.AutoSize = true;
+            this.PSNR_static.Location = new System.Drawing.Point(769, 111);
+            this.PSNR_static.Name = "PSNR_static";
+            this.PSNR_static.Size = new System.Drawing.Size(37, 13);
+            this.PSNR_static.TabIndex = 17;
+            this.PSNR_static.Text = "PSNR";
+            this.PSNR_static.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(812, 111);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 18;
+            // 
+            // PSNR
+            // 
+            this.PSNR.AutoSize = true;
+            this.PSNR.Location = new System.Drawing.Point(818, 111);
+            this.PSNR.Name = "PSNR";
+            this.PSNR.Size = new System.Drawing.Size(13, 13);
+            this.PSNR.TabIndex = 19;
+            this.PSNR.Text = "0";
+            this.PSNR.Visible = false;
             // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 532);
+            this.Controls.Add(this.PSNR);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.PSNR_static);
+            this.Controls.Add(this.Blur_value);
             this.Controls.Add(this.sigma_in);
             this.Controls.Add(this.mu_in);
             this.Controls.Add(this.Const_value);
@@ -254,6 +297,10 @@
         private System.Windows.Forms.TextBox Const_value;
         private System.Windows.Forms.TextBox mu_in;
         private System.Windows.Forms.TextBox sigma_in;
+        private System.Windows.Forms.TextBox Blur_value;
+        private System.Windows.Forms.Label PSNR_static;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label PSNR;
     }
 }
 

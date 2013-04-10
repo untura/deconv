@@ -243,5 +243,6 @@ namespace Fourier
            
             return noise;
         }
+
     }
 }

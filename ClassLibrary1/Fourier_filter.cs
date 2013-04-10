@@ -39,5 +39,18 @@ namespace Deconvolution
             
             return res;
         }
+
+        static public double PSNR(double[,] im, double[,] im_deconv)
+        {
+            double MSE = 0;
+
+            for (int i = 0; i < im.GetLength(0); i++)
+                for (int j = 0; j < im.GetLength(1); j++)
+                    MSE += Math.Pow(Math.Abs(im[i, j] - im_deconv[i, j]), 2);
+
+            MSE = Math.Sqrt(MSE / (im.GetLength(0) * im.GetLength(1)));
+
+            return 20 * Math.Log10(255 / MSE);
+        }
     }
 }
