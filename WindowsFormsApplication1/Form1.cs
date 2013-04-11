@@ -109,11 +109,11 @@ namespace GUI
             double mu = Convert.ToDouble(mu_in.Text);
             double sigma = Convert.ToDouble(sigma_in.Text);
 
-            double[,] res = FFT.Convolute(im.Y, filter);
+            double[,] res = Filter.Convolute(im.Y, filter);
 
             for (int i = 0; i < im.Y.GetLength(0); i++)
                 for (int j = 0; j < im.Y.GetLength(1); j++)
-                    im_conv.Y[i, j] = res[i, j] + FFT.Noise(im.Y[i,j], mu,sigma);
+                    im_conv.Y[i, j] = res[i, j] + Filter.Noise(im.Y[i,j], mu,sigma);
 
             pictureBox2.Image = im_conv.ToBitmap();
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;

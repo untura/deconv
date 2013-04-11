@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fourier\Fourier.csproj">
+      <Project>{0E0FE342-DE3B-462E-BB67-EA53EF3B03E4}</Project>
+      <Name>Fourier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImageArray\ImageArray.csproj">
       <Project>{CC469638-BA9D-4DBA-A210-EA9AB5757CFD}</Project>
       <Name>ImageArray</Name>

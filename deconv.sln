@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deconv", "deconv\deconv.csproj", "{91B6C777-CC8E-4F08-A141-8E83877154BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "deconv\Test.csproj", "{91B6C777-CC8E-4F08-A141-8E83877154BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageArray", "ImageArray\ImageArray.csproj", "{CC469638-BA9D-4DBA-A210-EA9AB5757CFD}"
 EndProject
