@@ -66,6 +66,12 @@ namespace Convolution
             return image_new;
         }
 
+        /// <summary>
+        /// Размытие изображения
+        /// </summary>
+        /// <param name="im">Изображение в дискретном виде</param>
+        /// <param name="fil">Функция размытия точки</param>
+        /// <returns></returns>
         static public double[,] Convolute(double[,] im, double[,] fil)
         {
             Complex[,] IM_F = FFT.FFT2D(im);
@@ -81,6 +87,13 @@ namespace Convolution
             return res;
         }
 
+        /// <summary>
+        /// Аддитивный шум с нормальным распределением
+        /// </summary>
+        /// <param name="bright_value"></param>
+        /// <param name="average_bright"></param>
+        /// <param name="mean_square"></param>
+        /// <returns></returns>
         static public double Noise(double bright_value, double average_bright, double mean_square)
         {
             double noise = 1 / Math.Sqrt(2 * Math.PI * mean_square) *

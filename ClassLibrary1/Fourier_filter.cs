@@ -6,6 +6,12 @@ namespace Deconvolution
 {
     public class Fourier_filter
     {
+        /// <summary>
+        /// Инверсный фильтр
+        /// </summary>
+        /// <param name="fil">Функция размытия точки</param>
+        /// <param name="im_conv">Искаженное изображение</param>
+        /// <returns></returns>
         static public double[,] Inverse(double[,] fil, double[,] im_conv)
         {
             Complex[,] H = FFT.FFT2D(fil);
@@ -22,7 +28,13 @@ namespace Deconvolution
             return res;
         }
 
-
+        /// <summary>
+        /// Фильтр Винера
+        /// </summary>
+        /// <param name="fil">Функция размытия точки</param>
+        /// <param name="im_conv">Искаженное изображение</param>
+        /// <param name="Kons">Отношение сигнал/шум</param>
+        /// <returns></returns>
         static public double[,] Wiener (double[,] fil, double[,] im_conv, double Kons)
         {
             Complex[,] H = FFT.FFT2D(fil);
@@ -40,15 +52,21 @@ namespace Deconvolution
             return res;
         }
 
-        static public double PSNR(double[,] im, double[,] im_deconv)
+        /// <summary>
+        /// Вычисление оценочной величины PSNR
+        /// </summary>
+        /// <param name="im_conv">Искаженное изображение</param>
+        /// <param name="im_deconv">Восстановленное изображение</param>
+        /// <returns></returns>
+        static public double PSNR(double[,] im_conv, double[,] im_deconv)
         {
             double MSE = 0;
 
-            for (int i = 0; i < im.GetLength(0); i++)
-                for (int j = 0; j < im.GetLength(1); j++)
-                    MSE += Math.Pow(Math.Abs(im[i, j] - im_deconv[i, j]), 2);
+            for (int i = 0; i < im_conv.GetLength(0); i++)
+                for (int j = 0; j < im_conv.GetLength(1); j++)
+                    MSE += Math.Pow(Math.Abs(im_conv[i, j] - im_deconv[i, j]), 2);
 
-            MSE = Math.Sqrt(MSE / (im.GetLength(0) * im.GetLength(1)));
+            MSE = Math.Sqrt(MSE / (im_conv.GetLength(0) * im_conv.GetLength(1)));
 
             return 20 * Math.Log10(255 / MSE);
         }
