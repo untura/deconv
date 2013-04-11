@@ -51,6 +51,9 @@
             this.PSNR_static = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.PSNR = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Blur_value_1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -75,7 +78,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(25, 72);
+            this.button2.Location = new System.Drawing.Point(24, 86);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -89,7 +92,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(133, 101);
+            this.button5.Location = new System.Drawing.Point(132, 115);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 6;
@@ -108,7 +111,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(214, 103);
+            this.comboBox1.Location = new System.Drawing.Point(213, 117);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(89, 21);
             this.comboBox1.TabIndex = 8;
@@ -156,7 +159,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(133, 43);
+            this.button1.Location = new System.Drawing.Point(132, 57);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
@@ -166,7 +169,7 @@
             // 
             // Inverse_filter
             // 
-            this.Inverse_filter.Location = new System.Drawing.Point(474, 43);
+            this.Inverse_filter.Location = new System.Drawing.Point(473, 57);
             this.Inverse_filter.Name = "Inverse_filter";
             this.Inverse_filter.Size = new System.Drawing.Size(75, 23);
             this.Inverse_filter.TabIndex = 11;
@@ -176,7 +179,7 @@
             // 
             // Wiener_filter
             // 
-            this.Wiener_filter.Location = new System.Drawing.Point(474, 101);
+            this.Wiener_filter.Location = new System.Drawing.Point(473, 115);
             this.Wiener_filter.Name = "Wiener_filter";
             this.Wiener_filter.Size = new System.Drawing.Size(75, 23);
             this.Wiener_filter.TabIndex = 12;
@@ -186,28 +189,28 @@
             // 
             // Const_value
             // 
-            this.Const_value.Location = new System.Drawing.Point(555, 103);
+            this.Const_value.Location = new System.Drawing.Point(554, 117);
             this.Const_value.Name = "Const_value";
             this.Const_value.Size = new System.Drawing.Size(52, 20);
             this.Const_value.TabIndex = 13;
             // 
             // mu_in
             // 
-            this.mu_in.Location = new System.Drawing.Point(214, 53);
+            this.mu_in.Location = new System.Drawing.Point(213, 77);
             this.mu_in.Name = "mu_in";
             this.mu_in.Size = new System.Drawing.Size(52, 20);
             this.mu_in.TabIndex = 14;
             // 
             // sigma_in
             // 
-            this.sigma_in.Location = new System.Drawing.Point(272, 53);
+            this.sigma_in.Location = new System.Drawing.Point(271, 77);
             this.sigma_in.Name = "sigma_in";
             this.sigma_in.Size = new System.Drawing.Size(52, 20);
             this.sigma_in.TabIndex = 15;
             // 
             // Blur_value
             // 
-            this.Blur_value.Location = new System.Drawing.Point(214, 27);
+            this.Blur_value.Location = new System.Drawing.Point(213, 40);
             this.Blur_value.Name = "Blur_value";
             this.Blur_value.Size = new System.Drawing.Size(52, 20);
             this.Blur_value.TabIndex = 16;
@@ -215,7 +218,7 @@
             // PSNR_static
             // 
             this.PSNR_static.AutoSize = true;
-            this.PSNR_static.Location = new System.Drawing.Point(769, 111);
+            this.PSNR_static.Location = new System.Drawing.Point(768, 125);
             this.PSNR_static.Name = "PSNR_static";
             this.PSNR_static.Size = new System.Drawing.Size(37, 13);
             this.PSNR_static.TabIndex = 17;
@@ -225,7 +228,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(812, 111);
+            this.label2.Location = new System.Drawing.Point(811, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 18;
@@ -233,18 +236,46 @@
             // PSNR
             // 
             this.PSNR.AutoSize = true;
-            this.PSNR.Location = new System.Drawing.Point(818, 111);
+            this.PSNR.Location = new System.Drawing.Point(817, 125);
             this.PSNR.Name = "PSNR";
             this.PSNR.Size = new System.Drawing.Size(13, 13);
             this.PSNR.TabIndex = 19;
             this.PSNR.Text = "0";
             this.PSNR.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(210, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "blur kernel";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(210, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 13);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "noise parameters";
+            // 
+            // Blur_value_1
+            // 
+            this.Blur_value_1.Location = new System.Drawing.Point(319, 40);
+            this.Blur_value_1.Name = "Blur_value_1";
+            this.Blur_value_1.Size = new System.Drawing.Size(52, 20);
+            this.Blur_value_1.TabIndex = 22;
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 532);
+            this.Controls.Add(this.Blur_value_1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.PSNR);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.PSNR_static);
@@ -301,6 +332,9 @@
         private System.Windows.Forms.Label PSNR_static;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label PSNR;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox Blur_value_1;
     }
 }
 
