@@ -131,7 +131,7 @@ namespace GUI
               
             pictureBox3.Image = im_deconv.ToBitmap();
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            PSNR.Text = Convert.ToString(Fourier_filter.PSNR(im.Y, im_deconv.Y)) + " dB";
+            PSNR.Text = Convert.ToString(Fourier_filter.PSNR(im_conv.Y, im_deconv.Y)) + " dB";
             PSNR_static.Visible = true;
             PSNR.Visible = true;
         }
@@ -149,7 +149,7 @@ namespace GUI
                 
             pictureBox3.Image = im_deconv.ToBitmap();
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            PSNR.Text = Convert.ToString(Fourier_filter.PSNR(im.Y, im_deconv.Y)) + " dB";
+            PSNR.Text = Convert.ToString(Fourier_filter.PSNR(im_conv.Y, im_deconv.Y)) + " dB";
             PSNR_static.Visible = true;
             PSNR.Visible = true;
         }
