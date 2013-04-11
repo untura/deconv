@@ -85,7 +85,7 @@ namespace GUI
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
                 Stream save_str = saveFile.OpenFile();
-                pictureBox2.Image.Save(save_str, System.Drawing.Imaging.ImageFormat.Bmp);
+                pictureBox3.Image.Save(save_str, System.Drawing.Imaging.ImageFormat.Bmp);
                 save_str.Close();
             }
         }
@@ -152,6 +152,20 @@ namespace GUI
             PSNR.Text = Convert.ToString(Fourier_filter.PSNR(im_conv.Y, im_deconv.Y)) + " dB";
             PSNR_static.Visible = true;
             PSNR.Visible = true;
+        }
+
+        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.DefaultExt = ".bmp";
+            saveFile.Filter = "bmp files (*.bmp)|*.bmp|All files (*.*)|*.*";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                Stream save_str = saveFile.OpenFile();
+                pictureBox2.Image.Save(save_str, System.Drawing.Imaging.ImageFormat.Bmp);
+                save_str.Close();
+            }
         }
     }
 }
