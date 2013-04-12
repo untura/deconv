@@ -96,6 +96,11 @@ namespace Convolution
         /// <returns></returns>
         static public double Noise(double bright_value, double average_bright, double mean_square)
         {
+            if ((average_bright == 0)&&(mean_square == 0))
+            {
+                return 0;
+            }
+            
             double noise = 1 / Math.Sqrt(2 * Math.PI * mean_square) *
                 Math.Exp((-(bright_value - average_bright) * (bright_value - average_bright)) /
                          (2 * mean_square * mean_square));
