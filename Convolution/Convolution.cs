@@ -6,66 +6,6 @@ namespace Convolution
 {
     public class Filter
     {
-        double [,] filter;
-        double div;
-        
-        public Filter(string filter)
-        {
-            switch (filter)
-            {
-                case "Gauss":
-                    this.filter = new double[,]{
-                                {1, 2, 1},
-                                {2, 4, 2},
-                                {1, 2, 1}
-                                };
-                    div = 16;
-                    break;
-                case "Sharpen":
-                    this.filter = new double[,] {
-                                {0, -1, 0},
-                                {-1, 5, -1},
-                                {0, -1, 0}
-                                };
-                    div = 1;
-                    break;
-                case "Emboss":
-                    this.filter = new double[,]{
-                                {-2, -1, 0},
-                                {-1, 1, 0},
-                                {0, 1, 2}
-                                };
-                    div = 1;
-                    break;
-            }
-        }
-
-        public Filter()
-        {
-            filter = new double[,]{
-                                {1, 2, 1},
-                                {2, 4, 2},
-                                {1, 2, 1}
-                                };
-            div = 16;
-        }
-
-        public double[,] Apply(double[,] image)
-        {
-            double[,] image_new;
-            image_new = new double[image.GetLength(0),image.GetLength(1)];
-
-            for (int i = filter.GetLength(0) / 2; i < image.GetLength(0); i++)
-                for (int j = filter.GetLength(1) / 2; j < image.GetLength(1); j++)
-                    for (int k = 0; k < (filter.GetLength(0) - 1) / 2; k++)
-                        for (int l = 0; l < (filter.GetLength(1) - 1) / 2; l++)
-                        {
-                            image_new[i, j] = filter[k, l] * image[i - filter.GetLength(0) / 2 + k, j - filter.GetLength(0) / 2 + l] / div;    
-                        }
-            
-            return image_new;
-        }
-
         /// <summary>
         /// Размытие изображения
         /// </summary>
@@ -96,7 +36,7 @@ namespace Convolution
         /// <returns></returns>
         static public double Noise(double bright_value, double average_bright, double mean_square)
         {
-            if ((average_bright == 0)&&(mean_square == 0))
+            if ((average_bright == 0) && (mean_square == 0))
             {
                 return 0;
             }

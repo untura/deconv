@@ -42,22 +42,7 @@ namespace GUI
             pictureBox2.Image = im.ToBitmap();
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
         }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            Filter fil = new Filter(comboBox1.Text);
-            fil.Apply(im.Y);
-            
-            pictureBox3.Image = im.ToBitmap();
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            string[] select = {"Gauss", "Sharpen", "Emboss"};
-            comboBox1.Items.AddRange(select);
-        }
-
+                     
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();

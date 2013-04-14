@@ -32,12 +32,11 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button5 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -53,7 +52,6 @@
             this.PSNR = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -62,6 +60,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(12, 176);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(268, 307);
@@ -70,6 +69,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Location = new System.Drawing.Point(370, 176);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(268, 307);
@@ -78,7 +78,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(24, 86);
+            this.button2.Location = new System.Drawing.Point(28, 77);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -90,31 +90,14 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(132, 115);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // pictureBox3
             // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox3.Location = new System.Drawing.Point(720, 176);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(268, 307);
             this.pictureBox3.TabIndex = 7;
             this.pictureBox3.TabStop = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(213, 117);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(89, 21);
-            this.comboBox1.TabIndex = 8;
             // 
             // menuStrip1
             // 
@@ -140,27 +123,34 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem1
+            // 
+            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            this.saveToolStripMenuItem1.Text = "Save Distorted";
+            this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.saveToolStripMenuItem.Text = "Save Restored";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(132, 57);
+            this.button1.Location = new System.Drawing.Point(133, 77);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
@@ -180,7 +170,7 @@
             // 
             // Wiener_filter
             // 
-            this.Wiener_filter.Location = new System.Drawing.Point(473, 115);
+            this.Wiener_filter.Location = new System.Drawing.Point(473, 97);
             this.Wiener_filter.Name = "Wiener_filter";
             this.Wiener_filter.Size = new System.Drawing.Size(75, 23);
             this.Wiener_filter.TabIndex = 12;
@@ -190,28 +180,28 @@
             // 
             // Const_value
             // 
-            this.Const_value.Location = new System.Drawing.Point(554, 117);
+            this.Const_value.Location = new System.Drawing.Point(554, 99);
             this.Const_value.Name = "Const_value";
             this.Const_value.Size = new System.Drawing.Size(52, 20);
             this.Const_value.TabIndex = 13;
             // 
             // mu_in
             // 
-            this.mu_in.Location = new System.Drawing.Point(213, 77);
+            this.mu_in.Location = new System.Drawing.Point(214, 97);
             this.mu_in.Name = "mu_in";
             this.mu_in.Size = new System.Drawing.Size(52, 20);
             this.mu_in.TabIndex = 14;
             // 
             // sigma_in
             // 
-            this.sigma_in.Location = new System.Drawing.Point(271, 77);
+            this.sigma_in.Location = new System.Drawing.Point(272, 97);
             this.sigma_in.Name = "sigma_in";
             this.sigma_in.Size = new System.Drawing.Size(52, 20);
             this.sigma_in.TabIndex = 15;
             // 
             // Blur_value
             // 
-            this.Blur_value.Location = new System.Drawing.Point(213, 40);
+            this.Blur_value.Location = new System.Drawing.Point(214, 60);
             this.Blur_value.Name = "Blur_value";
             this.Blur_value.Size = new System.Drawing.Size(52, 20);
             this.Blur_value.TabIndex = 16;
@@ -219,7 +209,7 @@
             // PSNR_static
             // 
             this.PSNR_static.AutoSize = true;
-            this.PSNR_static.Location = new System.Drawing.Point(768, 125);
+            this.PSNR_static.Location = new System.Drawing.Point(765, 107);
             this.PSNR_static.Name = "PSNR_static";
             this.PSNR_static.Size = new System.Drawing.Size(37, 13);
             this.PSNR_static.TabIndex = 17;
@@ -229,7 +219,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(811, 125);
+            this.label2.Location = new System.Drawing.Point(808, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 18;
@@ -237,7 +227,7 @@
             // PSNR
             // 
             this.PSNR.AutoSize = true;
-            this.PSNR.Location = new System.Drawing.Point(817, 125);
+            this.PSNR.Location = new System.Drawing.Point(814, 107);
             this.PSNR.Name = "PSNR";
             this.PSNR.Size = new System.Drawing.Size(13, 13);
             this.PSNR.TabIndex = 19;
@@ -247,7 +237,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(210, 24);
+            this.label1.Location = new System.Drawing.Point(211, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 20;
@@ -256,18 +246,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(210, 61);
+            this.label3.Location = new System.Drawing.Point(211, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 21;
             this.label3.Text = "noise parameters";
-            // 
-            // saveToolStripMenuItem1
-            // 
-            this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem1.Text = "Save Distorted";
-            this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // BaseForm
             // 
@@ -286,17 +269,14 @@
             this.Controls.Add(this.Wiener_filter);
             this.Controls.Add(this.Inverse_filter);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "BaseForm";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Deconvolution";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -313,9 +293,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
