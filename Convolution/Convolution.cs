@@ -6,6 +6,65 @@ namespace Convolution
 {
     public class Filter
     {
+        static public double[,] PSF_circle(int R, int line, int column)
+        {
+            double[,] result = new double[line, column];
+
+            double H = 1 * Math.PI / (R * R);
+
+            int x = line / 2 + R - 1;
+            int y = column / 2 - 1;
+            int dE = 3 - 2 * R;
+
+            int x1, x2, y1, y2 = y;
+
+            while (x > line / 2 - 1)
+            {
+                x1 = line - x - 1;
+                x2 = x;
+                y1 = y;
+                
+                for (int i = x1; i < x2; i++)
+                    result[i, y1] = H;
+
+                y2++;
+
+                for (int i = x1; i < x2; i++)
+                    result[i, y2] = H;
+
+                if (dE > 0)
+                    x--;
+
+                if (dE > 0)
+                    dE += 4 * (y - x) + 10;
+                else
+                    dE += 4 * y + 6;
+            }
+
+
+            return result;
+        }
+        
+        
+        /// <summary>
+        /// Возвращает функцию размытия точки в дискретном виде
+        /// </summary>
+        /// <param name="R">Величина ядра размытия</param>
+        /// <param name="line">Количество строк функции</param>
+        /// <param name="column">Количество столбцов функции</param>
+        /// <returns></returns>
+        static public double[,] PSF(int R, int line, int column)
+        {
+            double[,] psf = new double[line, column];
+            
+            for (int i = line / 2 - R / 2; i <= line / 2 + R / 2; i++)
+                for (int j = column / 2 - R / 2; j <= column / 2 + R / 2; j++)
+                    psf[i, j] = 1 * Math.PI / (R * R);
+
+            return psf;
+        }
+        
+        
         /// <summary>
         /// Размытие изображения
         /// </summary>

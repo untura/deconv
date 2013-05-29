@@ -85,11 +85,11 @@ namespace GUI
             Bitmap bm = new Bitmap(pictureBox1.Image);
             im_conv = new ImageYUV(bm);
 
-            filter = new double[im.Y.GetLength(0), im.Y.GetLength(1)];
+            filter = Filter.PSF_circle(Convert.ToInt32(Blur_value.Text), im.Y.GetLength(0), im.Y.GetLength(1));
 
-            for (int i = im.Y.GetLength(0) / 2 - Convert.ToInt32(Blur_value.Text) / 2; i <= im.Y.GetLength(0) / 2 + Convert.ToInt32(Blur_value.Text) / 2; i++)
-                for (int j = im.Y.GetLength(0) / 2 - Convert.ToInt32(Blur_value.Text) / 2; j <= im.Y.GetLength(0) / 2 + Convert.ToInt32(Blur_value.Text) / 2; j++)
-                    filter[i, j] = 1 * Math.PI / (Convert.ToInt32(Blur_value.Text) * Convert.ToInt32(Blur_value.Text));
+            //for (int i = im.Y.GetLength(0) / 2 - Convert.ToInt32(Blur_value.Text) / 2; i <= im.Y.GetLength(0) / 2 + Convert.ToInt32(Blur_value.Text) / 2; i++)
+            //    for (int j = im.Y.GetLength(0) / 2 - Convert.ToInt32(Blur_value.Text) / 2; j <= im.Y.GetLength(0) / 2 + Convert.ToInt32(Blur_value.Text) / 2; j++)
+            //        filter[i, j] = 1 * Math.PI / (Convert.ToInt32(Blur_value.Text) * Convert.ToInt32(Blur_value.Text));
 
             double mu = Convert.ToDouble(mu_in.Text);
             double sigma = Convert.ToDouble(sigma_in.Text);
