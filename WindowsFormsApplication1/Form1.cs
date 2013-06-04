@@ -18,7 +18,10 @@ namespace GUI
     {
         ImageYUV im;
         ImageYUV im_conv;
+        ImageYUV map;
         double[,] filter;
+        double[,] filter_add;
+        double[,] blur_map;
         
         public BaseForm()
         {
@@ -39,8 +42,6 @@ namespace GUI
 
             pictureBox1.Image = im.ToBitmap();
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.Image = im.ToBitmap();
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
         }
                      
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -56,9 +57,6 @@ namespace GUI
 
             pictureBox1.Image = bmp;
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-
-            pictureBox2.Image = bmp;
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,22 +84,21 @@ namespace GUI
             im_conv = new ImageYUV(bm);
 
             filter = Filter.PSF_circle(Convert.ToInt32(Blur_value.Text), im.Y.GetLength(0), im.Y.GetLength(1));
+            filter_add = Filter.PSF_circle(Convert.ToInt32(Blur_value_2.Text), im.Y.GetLength(0), im.Y.GetLength(1));
 
-            //for (int i = im.Y.GetLength(0) / 2 - Convert.ToInt32(Blur_value.Text) / 2; i <= im.Y.GetLength(0) / 2 + Convert.ToInt32(Blur_value.Text) / 2; i++)
-            //    for (int j = im.Y.GetLength(0) / 2 - Convert.ToInt32(Blur_value.Text) / 2; j <= im.Y.GetLength(0) / 2 + Convert.ToInt32(Blur_value.Text) / 2; j++)
-            //        filter[i, j] = 1 * Math.PI / (Convert.ToInt32(Blur_value.Text) * Convert.ToInt32(Blur_value.Text));
+            blur_map = Filter.Blur_map(im.Y.GetLength(0), im.Y.GetLength(1));
 
             double mu = Convert.ToDouble(mu_in.Text);
             double sigma = Convert.ToDouble(sigma_in.Text);
 
-            double[,] res = Filter.Convolute(im.Y, filter);
+            double[,] res = Filter.Blur(im.Y, filter);
 
             for (int i = 0; i < im.Y.GetLength(0); i++)
                 for (int j = 0; j < im.Y.GetLength(1); j++)
                     im_conv.Y[i, j] = res[i, j] + Filter.Noise(im.Y[i,j], mu,sigma);
 
-            pictureBox2.Image = im_conv.ToBitmap();
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.Image = im_conv.ToBitmap();
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void Inverse_filter_Click(object sender, EventArgs e)
@@ -151,6 +148,36 @@ namespace GUI
                 pictureBox2.Image.Save(save_str, System.Drawing.Imaging.ImageFormat.Bmp);
                 save_str.Close();
             }
+        }
+
+        private void openMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Title = "Open .bmp file";
+
+            if (openFile.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                return;
+
+            Bitmap bmp = new Bitmap(openFile.FileName);
+            map = new ImageYUV(bmp);
+
+            pictureBox2.Image = bmp;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+        }
+
+        private void Convolution_adaptive_Click(object sender, EventArgs e)
+        {
+            Bitmap bm = new Bitmap(pictureBox1.Image);
+            im_conv = new ImageYUV(bm);
+
+            double[,] res = Filter.Convolute(im.Y, map.Y);
+
+            for (int i = 0; i < im.Y.GetLength(0); i++)
+                for (int j = 0; j < im.Y.GetLength(1); j++)
+                    im_conv.Y[i, j] = res[i, j];
+
+            pictureBox3.Image = im_conv.ToBitmap();
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
         }
     }
 }

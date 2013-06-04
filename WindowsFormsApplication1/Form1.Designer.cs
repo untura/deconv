@@ -52,6 +52,9 @@
             this.PSNR = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.Blur_value_2 = new System.Windows.Forms.TextBox();
+            this.openMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Convolution_adaptive = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -113,6 +116,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
+            this.openMapToolStripMenuItem,
             this.saveToolStripMenuItem1,
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
@@ -123,28 +127,28 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem1
             // 
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem1.Text = "Save Distorted";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save Restored";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -160,7 +164,7 @@
             // 
             // Inverse_filter
             // 
-            this.Inverse_filter.Location = new System.Drawing.Point(473, 57);
+            this.Inverse_filter.Location = new System.Drawing.Point(414, 57);
             this.Inverse_filter.Name = "Inverse_filter";
             this.Inverse_filter.Size = new System.Drawing.Size(75, 23);
             this.Inverse_filter.TabIndex = 11;
@@ -170,7 +174,7 @@
             // 
             // Wiener_filter
             // 
-            this.Wiener_filter.Location = new System.Drawing.Point(473, 97);
+            this.Wiener_filter.Location = new System.Drawing.Point(414, 97);
             this.Wiener_filter.Name = "Wiener_filter";
             this.Wiener_filter.Size = new System.Drawing.Size(75, 23);
             this.Wiener_filter.TabIndex = 12;
@@ -180,7 +184,7 @@
             // 
             // Const_value
             // 
-            this.Const_value.Location = new System.Drawing.Point(554, 99);
+            this.Const_value.Location = new System.Drawing.Point(495, 99);
             this.Const_value.Name = "Const_value";
             this.Const_value.Size = new System.Drawing.Size(52, 20);
             this.Const_value.TabIndex = 13;
@@ -209,7 +213,7 @@
             // PSNR_static
             // 
             this.PSNR_static.AutoSize = true;
-            this.PSNR_static.Location = new System.Drawing.Point(765, 107);
+            this.PSNR_static.Location = new System.Drawing.Point(452, 137);
             this.PSNR_static.Name = "PSNR_static";
             this.PSNR_static.Size = new System.Drawing.Size(37, 13);
             this.PSNR_static.TabIndex = 17;
@@ -219,7 +223,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(808, 107);
+            this.label2.Location = new System.Drawing.Point(495, 137);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 18;
@@ -227,7 +231,7 @@
             // PSNR
             // 
             this.PSNR.AutoSize = true;
-            this.PSNR.Location = new System.Drawing.Point(814, 107);
+            this.PSNR.Location = new System.Drawing.Point(501, 137);
             this.PSNR.Name = "PSNR";
             this.PSNR.Size = new System.Drawing.Size(13, 13);
             this.PSNR.TabIndex = 19;
@@ -252,11 +256,37 @@
             this.label3.TabIndex = 21;
             this.label3.Text = "noise parameters";
             // 
+            // Blur_value_2
+            // 
+            this.Blur_value_2.Location = new System.Drawing.Point(272, 60);
+            this.Blur_value_2.Name = "Blur_value_2";
+            this.Blur_value_2.Size = new System.Drawing.Size(52, 20);
+            this.Blur_value_2.TabIndex = 22;
+            // 
+            // openMapToolStripMenuItem
+            // 
+            this.openMapToolStripMenuItem.Name = "openMapToolStripMenuItem";
+            this.openMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openMapToolStripMenuItem.Text = "Open map";
+            this.openMapToolStripMenuItem.Click += new System.EventHandler(this.openMapToolStripMenuItem_Click);
+            // 
+            // Convolution_adaptive
+            // 
+            this.Convolution_adaptive.Location = new System.Drawing.Point(675, 58);
+            this.Convolution_adaptive.Name = "Convolution_adaptive";
+            this.Convolution_adaptive.Size = new System.Drawing.Size(75, 23);
+            this.Convolution_adaptive.TabIndex = 23;
+            this.Convolution_adaptive.Text = "Conv_adapt";
+            this.Convolution_adaptive.UseVisualStyleBackColor = true;
+            this.Convolution_adaptive.Click += new System.EventHandler(this.Convolution_adaptive_Click);
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 532);
+            this.Controls.Add(this.Convolution_adaptive);
+            this.Controls.Add(this.Blur_value_2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PSNR);
@@ -313,6 +343,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem1;
+        private System.Windows.Forms.TextBox Blur_value_2;
+        private System.Windows.Forms.ToolStripMenuItem openMapToolStripMenuItem;
+        private System.Windows.Forms.Button Convolution_adaptive;
     }
 }
 
