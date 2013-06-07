@@ -60,37 +60,13 @@ namespace Convolution
         static public double[,] Mask(int R)
         {
             double[,] result = new double[2 * R, 2 * R];
-
-            int x = 2 * R - 1;
-            int y = R - 1;
-            int dE = 3 - 2 * R;
             double H = 1 * Math.PI / (R * R);
 
-            int x1, x2, y1, y2 = y;
-
-            while (x > R / 2 - 1)
-            {
-                x1 = 2 * R - x - 1;
-                x2 = x;
-                y1 = y;
-
-                for (int i = x1; i < x2; i++)
-                    result[i, y1] = H;
-
-                y2++;
-
-                for (int i = x1; i < x2; i++)
-                    result[i, y2] = H;
-
-                if (dE > 0)
-                    x--;
-
-                if (dE > 0)
-                    dE += 4 * (y - x) + 10;
-                else
-                    dE += 4 * y + 6;
-            }
-
+            for (int i = 0; i < 2 * R; i++)
+                for (int j = 0; j < 2 * R; j++)
+                    if ((i - R) * (i - R) + (j - R) * (j -R) < R * R)
+                        result[i, j] = H;
+          
             return result;
        }
         
@@ -164,22 +140,22 @@ namespace Convolution
         /// <returns></returns>
         static public double[,] Convolute(double[,] im, double[,] map)
         {
-            double[,] fil_1 = Mask(3);
-            double[,] fil_2 = Mask(15);
+            double[,] fil_1 = Mask(10);
+            double[,] fil_2 = Mask(7);
 
             double[,] result = new double[im.GetLength(0), im.GetLength(1)];
 
             for (int i = 0; i < im.GetLength(0); i++)
                 for (int j = 0; j < im.GetLength(1); j++)
                 {
-                    if (map[i, j] < 150)
+                    if (map[i, j] * 255 < 150)
                     {
                         if ((i > fil_1.GetLength(0) / 2) && (j > fil_1.GetLength(1) / 2) 
                             && (i < im.GetLength(0) - fil_1.GetLength(0) / 2) && (j < im.GetLength(1) - fil_1.GetLength(1) / 2))
                             for (int k = 0; k < (fil_1.GetLength(0) - 1) / 2; k++)
                                 for (int l = 0; l < (fil_1.GetLength(1) - 1) / 2; l++)
                                 {
-                                    result[i, j] = fil_1[k, l] * im[i - fil_1.GetLength(0) / 2 + k, j - fil_1.GetLength(0) / 2 + l];
+                                    result[i, j] += fil_1[k, l] * im[i - fil_1.GetLength(0) / 2 + k, j - fil_1.GetLength(0) / 2 + l];
                                 }
 
                     }
@@ -190,7 +166,7 @@ namespace Convolution
                             for (int k = 0; k < (fil_2.GetLength(0) - 1) / 2; k++)
                                 for (int l = 0; l < (fil_2.GetLength(1) - 1) / 2; l++)
                                 {
-                                    result[i, j] = fil_2[k, l] * im[i - fil_2.GetLength(0) / 2 + k, j - fil_2.GetLength(0) / 2 + l];
+                                    result[i, j] += fil_2[k, l] * im[i - fil_2.GetLength(0) / 2 + k, j - fil_2.GetLength(0) / 2 + l];
                                 }
                     }
                 }
