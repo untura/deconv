@@ -59,14 +59,23 @@ namespace Convolution
         /// <returns></returns>
         static public double[,] Mask(int R)
         {
-            double[,] result = new double[2 * R, 2 * R];
+            double[,] result = new double[2 * R + 1, 2 * R + 1];
             double H = 1 * Math.PI / (R * R);
+            double s = 0;
 
             for (int i = 0; i < 2 * R; i++)
                 for (int j = 0; j < 2 * R; j++)
-                    if ((i - R) * (i - R) + (j - R) * (j -R) < R * R)
-                        result[i, j] = H;
-          
+                {
+                    if ((i - R) * (i - R) + (j - R) * (j - R) < R * R)
+                    {
+                        result[i, j] = 1;
+                        s += result[i, j];
+                    }
+                }
+            for (int i = 0; i < 2 * R; i++)
+                for (int j = 0; j < 2 * R; j++)
+                    result[i, j] /= s;
+
             return result;
        }
         
@@ -141,7 +150,7 @@ namespace Convolution
         static public double[,] Convolute(double[,] im, double[,] map)
         {
             double[,] fil_1 = Mask(10);
-            double[,] fil_2 = Mask(7);
+            double[,] fil_2 = Mask(17);
 
             double[,] result = new double[im.GetLength(0), im.GetLength(1)];
 
